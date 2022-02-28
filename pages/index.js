@@ -57,7 +57,10 @@ function Index() {
         <p>
           {" "}
           Made by{" "}
-          <a href='https://twitter.com/prakhar_369' target='_blank'>
+          <a
+            href='https://twitter.com/prakhar_369'
+            rel='noreferrer'
+            target='_blank'>
             {" "}
             Prakhar ❤️
           </a>{" "}
