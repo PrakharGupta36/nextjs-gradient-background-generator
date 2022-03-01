@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 function Index() {
   const [color1, setColor1] = useState("#18dc53");
   const [color2, setColor2] = useState("#05c1ff");
+  let [degree, setDegree] = useState("90");
   const [text, setText] = useState(
     `linear-gradient(45deg, ${color1}, ${color2}) no-repeat center center fixed  `
   );
 
   useEffect(() => {
-    document.body.style.background = `linear-gradient(45deg, ${color1}, ${color2}) no-repeat center center fixed`;
+    document.body.style.background = `linear-gradient(${degree}deg, ${color1}, ${color2}) no-repeat center center fixed`;
     setText(document.body.style.background);
   });
 
@@ -25,7 +26,6 @@ function Index() {
             value={color1}
             onChange={(e) => {
               setColor1(e.target.value);
-              console.log(color1);
             }}
           />
         </div>
@@ -42,13 +42,32 @@ function Index() {
             }}
           />
         </div>
+        <div className='input-3'>
+          <label htmlFor='degree'> Degree </label>
+          <div>
+            <input
+              type='range'
+              min={0}
+              max={359}
+              name='degree'
+              id='degree'
+              value={degree}
+              onChange={(e) => {
+                setDegree(e.target.value);
+              }}
+            />
+          </div>
+        </div>
       </div>
+
       <p className='text-wrapper'>
-        <span id='text'>{text}</span>
+        <span id='text'>background:{text};</span>
         <button
           className='copy'
-          onClick={() => {
-            navigator.clipboard.writeText(text);
+          onClick={(e) => {
+            navigator.clipboard.writeText(
+              e.target.previousElementSibling.textContent
+            );
           }}>
           Copy to Clipboard
         </button>
